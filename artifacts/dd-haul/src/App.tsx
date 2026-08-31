@@ -13,8 +13,9 @@ import {
   Truck,
   X,
 } from 'lucide-react';
-import heroImage from '../attached_assets/generated_images/lagos-home-move.jpg';
-import eventImage from '../attached_assets/generated_images/event-logistics.jpg';
+import heroImage from '@assets/DDHAUL_1_1788203812095.jpeg';
+import officialLogo from '@assets/DDHAUL_2_1788203812107.jpeg';
+import fleetImage from '@assets/DDHAUL_3_1788203812108.jpeg';
 import storageImage from '../attached_assets/generated_images/secure-storage.jpg';
 
 type Service = {
@@ -69,8 +70,10 @@ const audiences = [
 function Logo() {
   return (
     <a className="logo" href="#top" data-testid="link-logo">
-      <span className="logo-mark" aria-hidden="true" />
-      <span>DD Haul</span>
+      <span className="logo-lockup">
+        <img className="brand-logo" src={officialLogo} alt="DD Haul official logo" data-testid="img-official-logo" />
+        <span className="logo-companion"><strong>DD Haul</strong><small>Moving &amp; logistics</small></span>
+      </span>
     </a>
   );
 }
@@ -128,7 +131,7 @@ function App() {
               </div>
             </div>
             <div className="hero-visual reveal">
-              <img className="hero-photo" src={heroImage} alt="DD Haul movers carrying a carefully wrapped armchair" data-testid="img-hero-move" />
+              <img className="hero-photo" src={heroImage} alt="DD Haul red truck with the campaign message Don't Get Buried in Boxes" data-testid="img-hero-campaign" />
               <div className="hero-photo-frame" />
               <div className="hero-stamp"><span className="mono">Moving<br />since<br /><strong>2012</strong></span></div>
             </div>
@@ -223,8 +226,8 @@ function App() {
         <section className="field-note section-pad" aria-labelledby="field-title">
           <div className="container field-grid">
             <div className="field-image reveal">
-              <img src={eventImage} alt="Event logistics crew arranging equipment beside a venue" loading="lazy" data-testid="img-event-logistics" />
-              <div className="field-image-label"><span className="mono">On the ground</span><p>Specialised support for decorators, caterers, drinks vendors, and event crews.</p></div>
+              <img src={fleetImage} alt="Three DD Haul trucks lined up to show the company's fleet capability" loading="lazy" data-testid="img-fleet-capability" />
+              <div className="field-image-label"><span className="mono">On the ground</span><p>A capable fleet for the goods, equipment, and spaces that keep Lagos moving.</p></div>
             </div>
             <div className="field-copy reveal">
               <div className="eyebrow mono">Beyond the box</div>

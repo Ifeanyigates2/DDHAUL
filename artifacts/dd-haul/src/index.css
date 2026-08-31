@@ -2,30 +2,30 @@
 @import 'tailwindcss';
 
 :root {
-  --ink: #102c3a;
-  --ink-deep: #0b202a;
-  --paper: #f5f1e8;
-  --paper-soft: #fbf8f1;
-  --clay: #d96945;
-  --clay-dark: #b94f31;
-  --sun: #f4c36a;
-  --sage: #a9b9a0;
-  --line: rgba(16, 44, 58, .15);
-  --muted: #64737a;
+  --ink: #151516;
+  --ink-deep: #0c0c0d;
+  --paper: #f3f1ec;
+  --paper-soft: #fffdfa;
+  --clay: #bd2027;
+  --clay-dark: #95171d;
+  --sun: #e7b83c;
+  --sage: #b6c4b1;
+  --line: rgba(21, 21, 22, .16);
+  --muted: #696969;
   --app-font-sans: 'Manrope', sans-serif;
   --app-font-serif: 'Playfair Display', Georgia, serif;
   --app-font-mono: 'DM Mono', monospace;
-  --background: 39 33% 94%;
-  --foreground: 198 57% 14%;
-  --border: 198 30% 80%;
-  --card: 39 38% 97%;
-  --card-foreground: 198 57% 14%;
-  --primary: 198 57% 14%;
-  --primary-foreground: 39 33% 94%;
-  --secondary: 16 64% 56%;
-  --secondary-foreground: 39 33% 94%;
-  --muted-foreground: 198 10% 44%;
-  --ring: 16 64% 56%;
+  --background: 40 20% 95%;
+  --foreground: 0 0% 8%;
+  --border: 0 0% 80%;
+  --card: 40 33% 99%;
+  --card-foreground: 0 0% 8%;
+  --primary: 0 0% 8%;
+  --primary-foreground: 40 20% 95%;
+  --secondary: 358 71% 43%;
+  --secondary-foreground: 40 20% 95%;
+  --muted-foreground: 0 0% 41%;
+  --ring: 358 71% 43%;
   --radius: 0.35rem;
 }
 
@@ -53,11 +53,12 @@ a { color: inherit; }
 .topline .mono { font-size: .59rem; letter-spacing: .1em; }
 .navbar { position: absolute; z-index: 5; width: 100%; color: var(--paper); top: 31px; }
 .nav-inner { height: 92px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(245,241,232,.24); }
-.logo { display: inline-flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.12rem; letter-spacing: -.05em; text-decoration: none; }
-.logo-mark { width: 31px; height: 31px; border: 1.5px solid var(--sun); display: grid; place-items: center; position: relative; }
-.logo-mark::before, .logo-mark::after { content: ''; position: absolute; background: var(--sun); }
-.logo-mark::before { width: 12px; height: 1.5px; transform: rotate(-45deg); }
-.logo-mark::after { width: 1.5px; height: 12px; transform: rotate(-45deg); }
+.logo { display: inline-flex; align-items: center; text-decoration: none; }
+.logo-lockup { display: inline-flex; align-items: center; gap: 9px; background: var(--paper-soft); color: var(--ink); padding: 4px 10px 4px 5px; min-height: 43px; }
+.brand-logo { display: block; width: 74px; height: 33px; object-fit: cover; object-position: center; }
+.logo-companion { display: grid; gap: 1px; line-height: 1; padding-right: 2px; }
+.logo-companion strong { font-size: .82rem; letter-spacing: -.05em; }
+.logo-companion small { font-family: var(--app-font-mono); text-transform: uppercase; letter-spacing: .09em; font-size: .42rem; color: var(--clay); margin-top: 3px; }
 .nav-links { display: flex; align-items: center; gap: 33px; }
 .nav-links a { text-decoration: none; color: rgba(245,241,232,.78); font-size: .75rem; font-weight: 700; transition: color .25s ease; }
 .nav-links a:hover { color: var(--sun); }

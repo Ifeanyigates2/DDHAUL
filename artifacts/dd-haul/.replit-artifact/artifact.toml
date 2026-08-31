@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "DD Haul"
+description = "A premium responsive marketing website for DD Haul, a Lagos-based moving and logistics company offering 3PL, event logistics, removals, haulage, distribution, truck rental, and secure short-term storage."
+version = "1.0.0"
+id = "artifacts/dd-haul"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 20511
+
+[services.development]
+run = "pnpm --filter @workspace/dd-haul run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/dd-haul", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/dd-haul/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "20511"
+BASE_PATH = "/"

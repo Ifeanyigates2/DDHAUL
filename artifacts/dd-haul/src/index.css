@@ -80,7 +80,7 @@ a { color: inherit; }
 .button-ghost { border-color: rgba(245,241,232,.34); color: var(--paper); }
 .button-ghost:hover { border-color: var(--sun); color: var(--sun); }
 .hero-visual { height: 560px; position: relative; }
-.hero-photo { width: 83%; height: 100%; margin-left: auto; object-fit: cover; filter: saturate(.78); }
+.hero-photo { width: 83%; height: 100%; margin-left: auto; object-fit: cover; object-position: 45% 40%; filter: saturate(.9); }
 .hero-photo-frame { position: absolute; inset: 28px 0 28px 17%; border: 1px solid rgba(244,195,106,.48); pointer-events: none; }
 .hero-stamp { position: absolute; bottom: 24px; left: -16px; width: 112px; height: 112px; background: var(--sun); color: var(--ink); border-radius: 50%; display: grid; place-items: center; text-align: center; line-height: 1.2; animation: pulse 3s ease-in-out infinite; }
 .hero-stamp .mono { font-size: .55rem; letter-spacing: .08em; }
@@ -143,7 +143,8 @@ a { color: inherit; }
 .field-note { background: var(--ink); color: var(--paper); padding: 130px 0; }
 .field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
 .field-image { position: relative; min-height: 640px; overflow: hidden; }
-.field-image img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.7); transition: transform .8s ease; }
+.field-image img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.85); transition: transform .8s ease; }
+.field-image-truck img { object-position: 18% 55%; }
 .field-image:hover img { transform: scale(1.04); }
 .field-image-label { position: absolute; bottom: 20px; left: 20px; right: 20px; padding: 20px; background: rgba(11,32,42,.82); backdrop-filter: blur(6px); border-left: 2px solid var(--sun); }
 .field-image-label p { color: rgba(245,241,232,.65); margin: 7px 0 0; font-size: .78rem; line-height: 1.6; }
@@ -173,6 +174,11 @@ a { color: inherit; }
 .contact-details { margin-top: 48px; display: grid; gap: 13px; }
 .contact-details a { text-decoration: none; font-weight: 700; font-size: .9rem; }
 .contact-details a:hover { color: var(--clay-dark); }
+.whatsapp-text-link { display: inline-flex; align-items: center; gap: 8px; }
+.form-submit { width: 100%; margin-top: 12px; background: var(--ink); color: var(--paper); }
+.form-submit:hover { background: var(--clay); }
+.whatsapp-submit { background: #128C7E; }
+.whatsapp-submit:hover { background: #25D366; color: #111; }
 .quote-form { background: var(--paper-soft); padding: 36px; }
 .quote-form h3 { font-size: 1.35rem; letter-spacing: -.04em; margin: 0 0 28px; }
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
@@ -181,8 +187,6 @@ a { color: inherit; }
 .form-field input, .form-field select, .form-field textarea { width: 100%; border: 0; border-bottom: 1px solid var(--line); background: transparent; color: var(--ink); padding: 9px 0; outline: none; border-radius: 0; }
 .form-field textarea { min-height: 68px; resize: vertical; }
 .form-field input:focus, .form-field select:focus, .form-field textarea:focus { border-color: var(--clay); }
-.form-submit { width: 100%; margin-top: 12px; background: var(--ink); color: var(--paper); }
-.form-submit:hover { background: var(--clay); }
 .success-state { padding: 26px 0 12px; }
 .success-state .success-mark { width: 46px; height: 46px; border-radius: 50%; background: var(--sage); display: grid; place-items: center; margin-bottom: 18px; }
 .success-state h3 { font-size: 1.55rem; margin: 0 0 10px; }
@@ -195,8 +199,27 @@ a { color: inherit; }
 .footer-col h4 { color: var(--sun); margin: 0 0 17px; }
 .footer-col a { display: block; color: rgba(245,241,232,.65); font-size: .78rem; text-decoration: none; margin: 11px 0; }
 .footer-col a:hover { color: var(--paper); }
+.footer-icon-link { display: flex; align-items: center; gap: 8px; }
 .footer-bottom { display: flex; justify-content: space-between; gap: 20px; padding-top: 22px; color: rgba(245,241,232,.4); }
 .footer-bottom .mono { font-size: .56rem; }
+
+.whatsapp-fab {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 80;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: #25D366;
+  color: #fff;
+  display: grid;
+  place-items: center;
+  text-decoration: none;
+  box-shadow: 0 12px 28px rgba(18, 140, 126, .38);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.whatsapp-fab:hover { transform: translateY(-3px) scale(1.04); box-shadow: 0 16px 32px rgba(18, 140, 126, .5); }
 
 @media (max-width: 800px) {
   .container, .hero-inner { width: min(100% - 34px, 650px); }
@@ -231,6 +254,7 @@ a { color: inherit; }
   .footer-links { margin-top: 48px; gap: 30px; }
   .footer-bottom { display: block; }
   .footer-bottom span { display: block; margin-top: 8px; }
+  .whatsapp-fab { right: 16px; bottom: 16px; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

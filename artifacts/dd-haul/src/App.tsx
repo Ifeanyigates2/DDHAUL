@@ -13,10 +13,26 @@ import {
   Truck,
   X,
 } from 'lucide-react';
-import heroImage from '@assets/DDHAUL_1_1788203812095.jpeg';
+import warehouseImage from '@assets/ddhaul-warehouse.jpg';
 import officialLogo from '@assets/DDHAUL_2_1788203812107.jpeg';
-import fleetImage from '@assets/DDHAUL_3_1788203812108.jpeg';
+import truckImage from '@assets/ddhaul-truck.jpg';
 import storageImage from '../attached_assets/generated_images/secure-storage.jpg';
+
+const WHATSAPP_NUMBER = '2349080000196';
+const WHATSAPP_DISPLAY = '0908 000 0196';
+const WHATSAPP_GREETING = 'Hello DD Haul, I would like to plan a move.';
+
+function whatsappHref(text = WHATSAPP_GREETING) {
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+}
+
+function WhatsAppIcon({ size = 22 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M19.05 4.91A9.82 9.82 0 0 0 12.04 2C6.51 2 2.02 6.49 2.02 12.02c0 1.77.46 3.5 1.34 5.02L2 22l5.1-1.34a10 10 0 0 0 4.94 1.26h.01c5.53 0 10.02-4.49 10.02-10.02 0-2.68-1.04-5.2-2.92-7zM12.05 20.11h-.01a8.1 8.1 0 0 1-4.13-1.13l-.3-.18-3.03.8.81-2.95-.19-.3a8.1 8.1 0 0 1-1.24-4.33c0-4.48 3.65-8.13 8.14-8.13 2.17 0 4.21.85 5.75 2.39a8.08 8.08 0 0 1 2.38 5.75c0 4.48-3.65 8.13-8.18 8.13m4.47-6.09c-.24-.12-1.45-.72-1.67-.8-.22-.08-.39-.12-.55.12-.16.24-.63.8-.77.96-.14.16-.29.18-.53.06-.24-.12-1.02-.38-1.94-1.2-.72-.64-1.2-1.43-1.34-1.67-.14-.24-.02-.37.11-.49.11-.11.24-.29.37-.43.12-.14.16-.24.24-.41.08-.16.04-.31-.02-.43-.06-.12-.55-1.33-.76-1.82-.2-.48-.4-.41-.55-.42h-.47c-.16 0-.43.06-.65.31-.22.24-.86.84-.86 2.05s.88 2.38 1 2.55c.12.16 1.73 2.64 4.2 3.7.59.25 1.04.41 1.4.52.59.18 1.12.16 1.54.1.47-.07 1.45-.59 1.65-1.16.2-.57.2-1.06.14-1.16-.06-.1-.22-.16-.46-.28" />
+    </svg>
+  );
+}
 
 type Service = {
   index: string;
@@ -91,15 +107,31 @@ function App() {
   const closeMenu = () => setMenuOpen(false);
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const form = new FormData(event.currentTarget);
+    const details = String(form.get('details') || '').trim();
+    const message = [
+      'Hello DD Haul, I would like to plan a move.',
+      '',
+      `Name: ${String(form.get('name') || '').trim()}`,
+      `Phone: ${String(form.get('phone') || '').trim()}`,
+      `Help with: ${String(form.get('move-type') || '').trim()}`,
+      `Location: ${String(form.get('location') || '').trim()}`,
+      details ? `Details: ${details}` : '',
+    ]
+      .filter(Boolean)
+      .join('\n');
+
+    window.open(whatsappHref(message), '_blank', 'noopener,noreferrer');
     setSubmitted(true);
   };
 
   return (
+    <>
     <div className="dd-page" id="top">
       <div className="topline">
         <div className="container topline-inner">
           <span className="mono">Lagos · South West · South South · South East</span>
-          <span className="mono">Talk to a moving partner <a href="tel:+2349080000196" data-testid="link-top-phone">0908 000 0196</a></span>
+          <span className="mono">Talk to a moving partner <a href="tel:+2349080000196" data-testid="link-top-phone">0908 000 0196</a> · <a href={whatsappHref()} target="_blank" rel="noreferrer" data-testid="link-top-whatsapp">WhatsApp</a></span>
         </div>
       </div>
 
@@ -127,11 +159,11 @@ function App() {
               <p className="hero-description">DD Haul is the calm, capable logistics partner behind a move that goes exactly right — from one home to a whole supply chain.</p>
               <div className="hero-actions">
                 <a href="#contact" className="button button-primary" data-testid="link-hero-quote">Plan your move <MoveRight size={16} /></a>
-                <a href="#services" className="button button-ghost" data-testid="link-hero-services">Explore services</a>
+                <a href={whatsappHref()} className="button button-ghost" target="_blank" rel="noreferrer" data-testid="link-hero-whatsapp">WhatsApp us <WhatsAppIcon size={16} /></a>
               </div>
             </div>
             <div className="hero-visual reveal">
-              <img className="hero-photo" src={heroImage} alt="DD Haul red truck with the campaign message Don't Get Buried in Boxes" data-testid="img-hero-campaign" />
+              <img className="hero-photo" src={warehouseImage} alt="DD Haul workers loading branded red trucks at a warehouse loading dock" data-testid="img-hero-warehouse" />
               <div className="hero-photo-frame" />
               <div className="hero-stamp"><span className="mono">Moving<br />since<br /><strong>2012</strong></span></div>
             </div>
@@ -225,8 +257,8 @@ function App() {
 
         <section className="field-note section-pad" aria-labelledby="field-title">
           <div className="container field-grid">
-            <div className="field-image reveal">
-              <img src={fleetImage} alt="Three DD Haul trucks lined up to show the company's fleet capability" loading="lazy" data-testid="img-fleet-capability" />
+            <div className="field-image field-image-truck reveal">
+              <img src={truckImage} alt="Front of a DD Haul red truck with chrome grille and Ddhaul Trucking branding" loading="lazy" data-testid="img-fleet-capability" />
               <div className="field-image-label"><span className="mono">On the ground</span><p>A capable fleet for the goods, equipment, and spaces that keep Lagos moving.</p></div>
             </div>
             <div className="field-copy reveal">
@@ -286,14 +318,17 @@ function App() {
                 <a href="tel:+2349080000196" data-testid="link-contact-phone-1">0908 000 0196</a>
                 <a href="tel:+2349040002221" data-testid="link-contact-phone-2">0904 000 2221</a>
                 <a href="mailto:info@ddhaul.com.ng" data-testid="link-contact-email">info@ddhaul.com.ng</a>
+                <a className="whatsapp-text-link" href={whatsappHref()} target="_blank" rel="noreferrer" data-testid="link-contact-whatsapp">
+                  <WhatsAppIcon size={16} /> Chat on WhatsApp · {WHATSAPP_DISPLAY}
+                </a>
               </div>
             </div>
             <div className="quote-form reveal">
               {submitted ? (
                 <div className="success-state" data-testid="status-quote-success">
                   <div className="success-mark"><Check size={22} /></div>
-                  <h3>We have your note.</h3>
-                  <p>Thanks for reaching out. A DD Haul moving partner will be in touch soon to understand the details and shape the right plan.</p>
+                  <h3>WhatsApp is opening.</h3>
+                  <p>Your enquiry is ready to send. Finish the message in WhatsApp and a DD Haul moving partner will take it from there.</p>
                   <button className="button button-ghost" style={{ color: 'var(--ink)', borderColor: 'var(--line)' }} onClick={() => setSubmitted(false)} data-testid="button-submit-another">Send another enquiry <ArrowRight size={15} /></button>
                 </div>
               ) : (
@@ -308,7 +343,7 @@ function App() {
                     <div className="form-field"><label htmlFor="location">Move location</label><input id="location" name="location" required placeholder="Lagos to..." data-testid="input-location" /></div>
                   </div>
                   <div className="form-field"><label htmlFor="details">A few more details</label><textarea id="details" name="details" placeholder="Timing, volume, access, anything we should know..." data-testid="input-details" /></div>
-                  <button className="button form-submit" type="submit" data-testid="button-submit-quote">Request a conversation <ArrowRight size={16} /></button>
+                  <button className="button form-submit whatsapp-submit" type="submit" data-testid="button-submit-quote">Send on WhatsApp <WhatsAppIcon size={16} /></button>
                 </form>
               )}
             </div>
@@ -325,13 +360,24 @@ function App() {
             </div>
             <div className="footer-links">
               <div className="footer-col"><h4 className="mono">Explore</h4><a href="#about" data-testid="link-footer-about">Why DD Haul</a><a href="#services" data-testid="link-footer-services">Services</a><a href="#approach" data-testid="link-footer-approach">Our approach</a><a href="#contact" data-testid="link-footer-contact">Get a quote</a></div>
-              <div className="footer-col"><h4 className="mono">Connect</h4><a href="tel:+2349080000196" data-testid="link-footer-phone">0908 000 0196</a><a href="mailto:info@ddhaul.com.ng" data-testid="link-footer-email">info@ddhaul.com.ng</a><a href="https://www.instagram.com/ddhaul" target="_blank" rel="noreferrer" data-testid="link-footer-instagram"><Instagram size={13} /> Instagram</a><a href="https://www.linkedin.com/company/dd-haul/" target="_blank" rel="noreferrer" data-testid="link-footer-linkedin"><Linkedin size={13} /> LinkedIn</a></div>
+              <div className="footer-col"><h4 className="mono">Connect</h4><a href="tel:+2349080000196" data-testid="link-footer-phone">0908 000 0196</a><a className="footer-icon-link" href={whatsappHref()} target="_blank" rel="noreferrer" data-testid="link-footer-whatsapp"><WhatsAppIcon size={13} /> WhatsApp</a><a href="mailto:info@ddhaul.com.ng" data-testid="link-footer-email">info@ddhaul.com.ng</a><a className="footer-icon-link" href="https://www.instagram.com/ddhaul" target="_blank" rel="noreferrer" data-testid="link-footer-instagram"><Instagram size={13} /> Instagram</a><a className="footer-icon-link" href="https://www.linkedin.com/company/dd-haul/" target="_blank" rel="noreferrer" data-testid="link-footer-linkedin"><Linkedin size={13} /> LinkedIn</a></div>
             </div>
           </div>
           <div className="footer-bottom"><span className="mono">© 2025 DD Haul · Lagos, Nigeria</span><span className="mono">Moving made easy.</span></div>
         </div>
       </footer>
     </div>
+    <a
+      className="whatsapp-fab"
+      href={whatsappHref()}
+      target="_blank"
+      rel="noreferrer"
+      aria-label="Chat with DD Haul on WhatsApp"
+      data-testid="link-whatsapp-fab"
+    >
+      <WhatsAppIcon size={28} />
+    </a>
+    </>
   );
 }
 
